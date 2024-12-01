@@ -35,12 +35,15 @@ function embedPlayer(stat: any) {
 
 export async function execute(interaction: CommandInteraction){
   const name = interaction.options.get('name', false)?.value.toString().toLowerCase()
+  const rows = interaction.options.get('rows', false)?.value as number | undefined
 
   try {
     let stats = (await getStats()).map((stat,i) => ({ rank: i+1, ...stat }))
     
     if (name) {
       stats = stats.filter((p,i) => name === p.player)
+    } else if (rows) {
+      stats = stats.filter((p,i) => i < rows)
     }
 
     await interaction.deferReply()
@@ -84,9 +87,14 @@ export async function execute(interaction: CommandInteraction){
 
 export const data = new SlashCommandBuilder()
   .setName('stats')
-  .setDescription('`stats` [name] League Stats')
+  .setDescription('`stats` [name] [rows] League Stats')
   .addStringOption((option) =>
     option.setName('name')
       .setDescription('Name of the player, or leave it empty for all players')
+      .setRequired(false)
+  )
+  .addStringOption((option) =>
+    option.setName('rows')
+      .setDescription('Rows to be displayed')
       .setRequired(false)
   )
