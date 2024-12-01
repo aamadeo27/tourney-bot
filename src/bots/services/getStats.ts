@@ -3,10 +3,10 @@ import { Player } from "db/models/player";
 import { ITeam, Team } from "db/models/teams";
 
 
-function updatePlayerStat(stats: Map<string, any>, id: string, points: number){
+function updatePlayerStat(stats: Map<string, any>, id: string, points: number, setkey: string){
   let stat = stats.get(id) 
 
-  stat.sets++
+  stat.sets.add(setkey)
   stat.points += points
 }
 
@@ -16,7 +16,7 @@ export default async function getStats() {
   const stats = new Map()
 
   const players = await Player.find({})
-  players.forEach((p) => stats.set(p.id, { sets: 0, points: 0 }))
+  players.forEach((p) => stats.set(p.id, { sets: new Set(), points: 0 }))
 
   const teams = await Team.find({})
   const teamMap = new Map<string, ITeam>()
@@ -39,30 +39,25 @@ export default async function getStats() {
       closed: false
     }
 
-    if (set.closed) return
-
     if (g.winner === 1) {
       set.t1Wins++
     } else {
       set.t2Wins++
     }
     
-    if (set.t1Wins === 2 || set.t2Wins === 2){
-      set.closed = true
-      const t1 = teamMap.get(set.t1)
-      const t2 = teamMap.get(set.t2)
+    const t1 = teamMap.get(set.t1)
+    const t2 = teamMap.get(set.t2)
 
-      // Team 1 Update
-      updatePlayerStat(stats, t1.p1, set.t1Wins === 2 ? 1 : 0)
-      updatePlayerStat(stats, t1.p2, set.t1Wins === 2 ? 1 : 0)
+    // Team 1 Update
+    updatePlayerStat(stats, t1.p1, g.winner === 1 ? 1 : 0, setKey)
+    updatePlayerStat(stats, t1.p2, g.winner === 1 ? 1 : 0, setKey)
 
-      // Team 2 Update
-      updatePlayerStat(stats, t2.p1, set.t2Wins === 2 ? 1 : 0)
-      updatePlayerStat(stats, t2.p2, set.t2Wins === 2 ? 1 : 0)
-    }
+    // Team 2 Update
+    updatePlayerStat(stats, t2.p1, g.winner === 2 ? 1 : 0, setKey)
+    updatePlayerStat(stats, t2.p2, g.winner === 2 ? 1 : 0, setKey)
   })
   
-  const result = Array.from(stats, ([player, stat]) => ({ player, ...stat }))
+  const result = Array.from(stats, ([player, stat]) => ({ player, ...stat, sets: stat.sets.size }))
 
   return result.sort((a,b) => b.points - a.points)
 }
