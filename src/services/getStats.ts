@@ -62,5 +62,5 @@ export default async function getStats() {
   
   const result = Array.from(stats, ([player, stat]) => ({ player, ...stat, sets: stat.sets.size }))
 
-  return result.sort((a,b) => b.points - a.points)
+  return result.sort((a,b) => b.points - a.points).map((stat,i) => ({ rank: i+1, ...stat }))
 }

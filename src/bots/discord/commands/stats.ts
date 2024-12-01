@@ -38,7 +38,7 @@ export async function execute(interaction: CommandInteraction){
   const rows = interaction.options.get('rows', false)?.value as number | undefined
 
   try {
-    let stats = (await getStats()).map((stat,i) => ({ rank: i+1, ...stat }))
+    let stats = await getStats()
     
     if (name) {
       stats = stats.filter((p,i) => name === p.player)
