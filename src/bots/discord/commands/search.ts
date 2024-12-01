@@ -7,7 +7,8 @@ export async function execute(interaction: CommandInteraction){
 
     const players = await getPlayers(term)
     await interaction.reply({
-      content: `\`search\` ${term}:\n${players.join('\n')}`
+      content: `\`search\` ${term}:\n${players.join('\n')}`,
+      ephemeral: true,
     })
   } catch (error) {
     console.error(error)
