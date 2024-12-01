@@ -1,4 +1,4 @@
-import getPlayerHistory from "bots/services/getPlayerHistory"
+import getPlayerHistory from "services/getPlayerHistory"
 import { CommandInteraction, EmbedBuilder, Interaction, SlashCommandBuilder } from "discord.js"
 
 

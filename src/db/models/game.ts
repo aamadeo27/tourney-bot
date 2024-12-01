@@ -5,6 +5,7 @@ export interface IGame extends Document {
   t1: string
   t2: string
   winner: 1 | 2
+  createdAt: Date
 }
 
 const gameSchema: Schema<IGame> = new mongoose.Schema<IGame>({

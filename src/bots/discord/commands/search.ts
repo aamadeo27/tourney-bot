@@ -1,4 +1,4 @@
-import getPlayers from "bots/services/getPlayers";
+import getPlayers from "services/getPlayers";
 import { CommandInteraction, SlashCommandBuilder } from "discord.js";
 
 export async function execute(interaction: CommandInteraction){

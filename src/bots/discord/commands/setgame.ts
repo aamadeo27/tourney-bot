@@ -1,4 +1,4 @@
-import setGame from "bots/services/setGame";
+import setGame from "services/setGame";
 import { CommandInteraction, SlashCommandBuilder } from "discord.js";
 
 export async function execute(interaction: CommandInteraction){

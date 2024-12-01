@@ -5,6 +5,7 @@ export interface ITeam extends Document {
   id: string
   p1: string
   p2: string
+  createdAt: Date
 }
 
 const schema: Schema<ITeam> = new mongoose.Schema<ITeam>({

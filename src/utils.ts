@@ -20,3 +20,5 @@ export const teamId = (p1: string, p2: string) => {
 
   return crypto.createHash('sha256').update(input).digest('hex').slice(0, 8);
 }
+
+export const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))

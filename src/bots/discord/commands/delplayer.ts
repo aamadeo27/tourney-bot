@@ -1,4 +1,4 @@
-import delPlayer from "bots/services/delPlayer"
+import delPlayer from "services/delPlayer"
 import { CommandInteraction, Interaction, SlashCommandBuilder } from "discord.js"
 
 export async function execute(interaction: CommandInteraction){

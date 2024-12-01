@@ -1,4 +1,4 @@
-import getStats from "bots/services/getStats";
+import getStats from "services/getStats";
 import { CommandInteraction, EmbedBuilder, SlashCommandBuilder } from "discord.js";
 
 const AVATARS = [

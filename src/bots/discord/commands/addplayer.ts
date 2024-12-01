@@ -1,4 +1,4 @@
-import addPlayer from "bots/services/addPlayer";
+import addPlayer from "services/addPlayer";
 import { CommandInteraction, Interaction, SlashCommandBuilder } from "discord.js";
 import { MongoServerError } from "mongodb";
 
