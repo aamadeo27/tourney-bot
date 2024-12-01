@@ -1,0 +1,30 @@
+{
+  "name": "tourney-bot",
+  "version": "1.0.0",
+  "description": "discord and twitch bot to host tournaments",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "nodemon",
+    "test": "test"
+  },
+  "author": "aamadeo27",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/axios": "^0.9.36",
+    "@types/mongoose": "^5.11.96",
+    "@types/node": "^22.9.2",
+    "cross-env": "^7.0.3",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "discord.js": "^14.16.3",
+    "dotenv": "^16.4.5",
+    "mongodb": "^6.11.0",
+    "mongoose": "^8.8.2",
+    "rimraf": "^6.0.1",
+    "tmi.js": "^1.8.5"
+  }
+}
