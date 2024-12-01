@@ -8,8 +8,6 @@ function updatePlayerStat(stats: Map<string, any>, id: string, points: number, s
 
   stat.sets.add(setkey)
   stat.points += points
-
-  console.log(setkey, id, points)
 }
 
 export default async function getStats() {
@@ -26,12 +24,12 @@ export default async function getStats() {
 
   games.forEach((g) => {
     let winnerId = g.winner === 1 ? g.t1 : g.t2
-    console.log({
-      t1: `${teamMap.get(g.t1).p1}+${teamMap.get(g.t1).p2}`,
-      t2: `${teamMap.get(g.t2).p1}+${teamMap.get(g.t2).p2}`,
-      winner: g.winner,
-      id: g.id,
-    })
+    // console.log({
+    //   t1: `${teamMap.get(g.t1).p1}+${teamMap.get(g.t1).p2}`,
+    //   t2: `${teamMap.get(g.t2).p1}+${teamMap.get(g.t2).p2}`,
+    //   winner: g.winner,
+    //   id: g.id,
+    // })
 
     const setKey = g.t1 < g.t2 ? `${g.t1}v${g.t2}` : `${g.t2}v${g.t1}`
     const set = sets[setKey] = sets[setKey] ?? { 
