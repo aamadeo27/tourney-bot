@@ -45,7 +45,7 @@ export async function execute(interaction: CommandInteraction){
     }
   } catch (error) {
     console.error(error)
-    interaction.reply({
+    await interaction.reply({
       content: 'Internal Error', 
       ephemeral: true
     })

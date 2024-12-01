@@ -5,6 +5,7 @@ import * as delgame from './delgame'
 import * as stats from './stats'
 import * as help from './help'
 import * as history from './history'
+import * as search from './search'
 
 const discordCommands = { library: {}, data: {} }
 
@@ -15,6 +16,7 @@ const commands = {
   delgame,
   stats,
   history,
+  search,
   help
 }
 
