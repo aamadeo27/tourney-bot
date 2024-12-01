@@ -60,8 +60,17 @@ export async function execute(interaction: CommandInteraction){
       embedsList.push(tmp)
     }
 
+    let replies = 0
     for (const embeds of embedsList) {
       await interaction.followUp({ embeds, content: '\`/stats ' + (name ?? '') + '\`' });
+      replies++
+    }
+
+    if (replies === 0){
+      await interaction.followUp({ 
+        content: '\`/stats ' + (name ?? '') + '\` Player not found',
+        ephemeral: true
+      });
     }
 
   } catch(error) {
