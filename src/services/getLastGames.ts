@@ -18,7 +18,8 @@ export default async function getLastGames(name: string) {
     teammate: team.p1 === name ? team.p2 : team.p1,
     enemyTeam: team.id === g.t1 ? g.t2 : g.t1,
     playerTeam: team.id,
-    winner: g.winner === 1 ? g.t1 : g.t2
+    winner: g.winner === 1 ? g.t1 : g.t2,
+    date: new Date(g.createdAt)
   }))
 
   const enemyTeams = await Team.find({ id: { $in: playerGames.map((pg) => pg.enemyTeam ) }})
