@@ -16,7 +16,7 @@ export default async function start(){
   await client.connect()
   console.log('Connected to Twitch. Channels:', requireEnv('TWITCH_CHANNELS').split(','))
 
-  client.on('message', (channel, tags, message, self) => {
+  client.on('message', async (channel, tags, message, self) => {
     if (self || !message) return
     if(!message.match(/^!/)) return
 
@@ -26,7 +26,7 @@ export default async function start(){
     if(!commands[command]) return
 
     try {
-      commands[command]((s: string) => {
+      await commands[command]((s: string) => {
         console.log('nabbot: ',s)
         if (!s) return
 

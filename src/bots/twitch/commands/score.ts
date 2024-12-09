@@ -3,6 +3,9 @@ import { delay } from "utils"
 
 
 export default async function score(say: (comment: string) => void, name: string) {
+
+  if (!name) return
+
   const games = await getLastGames(name)
 
   for (const g of games) {
